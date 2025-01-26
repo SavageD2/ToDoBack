@@ -18,8 +18,8 @@ const taskModel = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['pending', 'in progress', 'completed'],
-        default: 'pending'
+        enum: ['todo', 'inProgress', 'done'],
+        default: 'todo'
     },
     owner: {
         type: mongoose.Schema.Types.ObjectId,

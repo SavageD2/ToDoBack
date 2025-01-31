@@ -33,15 +33,15 @@ exports.updateTask = async (req, res) => {
     const { title, description, priority, dueDate, status } = req.body;
     try {
         const task = await Task.findById(req.params.id);
-        if(!task) return res.status(404).json({ message: 'Tâche introuvable' });
-        if(task.owner.toString() !== req.user.id) return res.status(403).json({ message: 'Non autorisé' });
+        if (!task) return res.status(404).json({ message: 'Tâche introuvable' });
+        if (task.owner.toString() !== req.user.id) return res.status(403).json({ message: 'Non autorisé' });
 
         task.title = title || task.title;
         task.description = description || task.description;
         task.priority = priority || task.priority;
         task.dueDate = dueDate || task.dueDate;
         task.status = status || task.status;
-        
+
         await task.save();
         res.json(task);
     } catch (err) {
